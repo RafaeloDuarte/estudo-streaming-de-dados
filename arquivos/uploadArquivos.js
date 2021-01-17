@@ -1,7 +1,5 @@
 const fs = require('fs')
 
-fs.readFile('./assets/vira-lata2.jpg', (erro, buffer) => {
-    fs.writeFile('./assets/vira-lata4.jpg', buffer, (erro)=>{
-        console.log('imagem processada')
-    })
-})
+fs.createReadStream('./assets/vira-lata.jpg')
+    .pipe(fs.createWriteStream('./assets/vira-lata-streaming.jpg'))
+    .on('finish', () => console.log('imagem registrada via streaming de dados'))
